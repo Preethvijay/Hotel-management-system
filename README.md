@@ -108,24 +108,3 @@ hotel-management-system/
 
 <img width="960" alt="Screenshot 2025-06-27 112312" src="https://github.com/user-attachments/assets/00ff84e9-8983-40d1-a280-8abf52908668" />
 
-
----
-
-## 🧑‍💻 Author
-
-**Your Name**
-Feel free to contribute or fork the project. Pull requests are welcome!
-
----
-
-## 📜 License
-
-This project is licensed under the **MIT License** — use it freely for personal or commercial purposes.
-
----
-
-Let me know if you want:
-
-* A **backend integration version** (e.g., using Firebase, Express, or PHP)
-* Deployment instructions (e.g., GitHub Pages)
-* A responsive **admin login page** or **dark mode**
