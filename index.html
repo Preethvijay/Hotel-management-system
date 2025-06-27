@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Management System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2><i class="fas fa-hotel"></i> Hotel MS</h2>
+            <button class="toggle-btn" id="toggleBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#" class="nav-link active" data-page="dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            <li><a href="#" class="nav-link" data-page="rooms"><i class="fas fa-bed"></i> Rooms</a></li>
+            <li><a href="#" class="nav-link" data-page="guests"><i class="fas fa-users"></i> Guests</a></li>
+            <li><a href="#" class="nav-link" data-page="reservations"><i class="fas fa-calendar-check"></i> Reservations</a></li>
+            <li><a href="#" class="nav-link" data-page="checkin"><i class="fas fa-sign-in-alt"></i> Check-in/out</a></li>
+            <li><a href="#" class="nav-link" data-page="billing"><i class="fas fa-receipt"></i> Billing</a></li>
+            <li><a href="#" class="nav-link" data-page="reports"><i class="fas fa-chart-bar"></i> Reports</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        <!-- Dashboard Page -->
+        <div class="page active" id="dashboard">
+            <div class="page-header">
+                <h1>Dashboard</h1>
+                <div class="date-time" id="dateTime"></div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-bed"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="totalRooms">150</h3>
+                        <p>Total Rooms</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon occupied">
+                        <i class="fas fa-user-check"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="occupiedRooms">89</h3>
+                        <p>Occupied</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon available">
+                        <i class="fas fa-door-open"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="availableRooms">61</h3>
+                        <p>Available</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon revenue">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="todayRevenue">₹2,450</h3>
+                        <p>Today's Revenue</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="chart-container">
+                    <h3>Occupancy Rate</h3>
+                    <div class="occupancy-chart">
+                        <div class="chart-bar" style="height: 70%">
+                            <span class="bar-label">Mon</span>
+                        </div>
+                        <div class="chart-bar" style="height: 85%">
+                            <span class="bar-label">Tue</span>
+                        </div>
+                        <div class="chart-bar" style="height: 60%">
+                            <span class="bar-label">Wed</span>
+                        </div>
+                        <div class="chart-bar" style="height: 90%">
+                            <span class="bar-label">Thu</span>
+                        </div>
+                        <div class="chart-bar" style="height: 75%">
+                            <span class="bar-label">Fri</span>
+                        </div>
+                        <div class="chart-bar" style="height: 95%">
+                            <span class="bar-label">Sat</span>
+                        </div>
+                        <div class="chart-bar" style="height: 80%">
+                            <span class="bar-label">Sun</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recent-activities">
+                    <h3>Recent Activities</h3>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <i class="fas fa-sign-in-alt"></i>
+                            <div>
+                                <p>karthick checked in to Room 205</p>
+                                <small>2 minutes ago</small>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <div>
+                                <p>Saravanan checked out from Room 312</p>
+                                <small>15 minutes ago</small>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <i class="fas fa-calendar-plus"></i>
+                            <div>
+                                <p>New reservation for Room 108</p>
+                                <small>1 hour ago</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rooms Page -->
+        <div class="page" id="rooms">
+            <div class="page-header">
+                <h1>Room Management</h1>
+                <button class="btn btn-primary" id="addRoomBtn">
+                    <i class="fas fa-plus"></i> Add Room
+                </button>
+            </div>
+
+            <div class="filters">
+                <select id="roomTypeFilter">
+                    <option value="">All Types</option>
+                    <option value="single">Single</option>
+                    <option value="double">Double</option>
+                    <option value="suite">Suite</option>
+                </select>
+                <select id="roomStatusFilter">
+                    <option value="">All Status</option>
+                    <option value="available">Available</option>
+                    <option value="occupied">Occupied</option>
+                    <option value="maintenance">Maintenance</option>
+                </select>
+            </div>
+
+            <div class="rooms-grid" id="roomsGrid">
+                
+            </div>
+        </div>
+
+        <!-- Guests Page -->
+        <div class="page" id="guests">
+            <div class="page-header">
+                <h1>Guest Management</h1>
+                <button class="btn btn-primary" id="addGuestBtn">
+                    <i class="fas fa-user-plus"></i> Add Guest
+                </button>
+            </div>
+
+            <div class="search-bar">
+                <input type="text" id="guestSearch" placeholder="Search guests...">
+                <i class="fas fa-search"></i>
+            </div>
+
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Room</th>
+                            <th>Check-in</th>
+                            <th>Check-out</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="guestsTableBody">
+                       
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Reservations Page -->
+        <div class="page" id="reservations">
+            <div class="page-header">
+                <h1>Reservations</h1>
+                <button class="btn btn-primary" id="addReservationBtn">
+                    <i class="fas fa-calendar-plus"></i> New Reservation
+                </button>
+            </div>
+
+            <div class="reservation-calendar">
+                <div class="calendar-header">
+                    <button id="prevMonth"><i class="fas fa-chevron-left"></i></button>
+                    <h3 id="currentMonth"></h3>
+                    <button id="nextMonth"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="calendar-grid" id="calendarGrid">
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Check-in/out Page -->
+        <div class="page" id="checkin">
+            <div class="page-header">
+                <h1>Check-in / Check-out</h1>
+            </div>
+
+            <div class="checkin-grid">
+                <div class="checkin-section">
+                    <h3>Check-in</h3>
+                    <form id="checkinForm">
+                        <input type="text" placeholder="Guest Name" required>
+                        <input type="email" placeholder="Email" required>
+                        <input type="tel" placeholder="Phone" required>
+                        <select required>
+                            <option value="">Select Room</option>
+                            
+                        </select>
+                        <input type="date" required>
+                        <input type="date" required>
+                        <button type="submit" class="btn btn-success">Check-in</button>
+                    </form>
+                </div>
+
+                <div class="checkout-section">
+                    <h3>Check-out</h3>
+                    <form id="checkoutForm">
+                        <input type="text" placeholder="Room Number" required>
+                        <button type="submit" class="btn btn-warning">Check-out</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="pending-checkouts">
+                <h3>Pending Check-outs Today</h3>
+                <div class="checkout-list" id="checkoutList">
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Billing Page -->
+        <div class="page" id="billing">
+            <div class="page-header">
+                <h1>Billing & Invoices</h1>
+                <button class="btn btn-primary" id="generateInvoiceBtn">
+                    <i class="fas fa-file-invoice"></i> Generate Invoice
+                </button>
+            </div>
+
+            <div class="billing-stats">
+                <div class="billing-card">
+                    <h3>Today's Revenue</h3>
+                    <p class="amount">₹12,450</p>
+                </div>
+                <div class="billing-card">
+                    <h3>This Month</h3>
+                    <p class="amount">₹5,680</p>
+                </div>
+                <div class="billing-card">
+                    <h3>Pending Payments</h3>
+                    <p class="amount">₹8,920</p>
+                </div>
+            </div>
+
+            <div class="invoices-table">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Invoice #</th>
+                            <th>Guest</th>
+                            <th>Room</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="invoicesTableBody">
+                        <!-- Invoices will be dynamically generated -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Reports Page -->
+        <div class="page" id="reports">
+            <div class="page-header">
+                <h1>Reports & Analytics</h1>
+                <button class="btn btn-primary" id="exportReportBtn">
+                    <i class="fas fa-download"></i> Export Report
+                </button>
+            </div>
+
+            <div class="report-filters">
+                <select id="reportType">
+                    <option value="occupancy">Occupancy Report</option>
+                    <option value="revenue">Revenue Report</option>
+                    <option value="guest">Guest Report</option>
+                </select>
+                <input type="date" id="reportStartDate">
+                <input type="date" id="reportEndDate">
+                <button class="btn btn-secondary" id="generateReportBtn">Generate</button>
+            </div>
+
+            <div class="report-content" id="reportContent">
+                <div class="report-summary">
+                    <h3>Monthly Summary</h3>
+                    <div class="summary-grid">
+                        <div class="summary-item">
+                            <span>Total Bookings</span>
+                            <strong>342</strong>
+                        </div>
+                        <div class="summary-item">
+                            <span>Average Occupancy</span>
+                            <strong>78%</strong>
+                        </div>
+                        <div class="summary-item">
+                            <span>Total Revenue</span>
+                            <strong>₹5,680</strong>
+                        </div>
+                        <div class="summary-item">
+                            <span>Average Daily Rate</span>
+                            <strong>₹185</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal for Add Room -->
+    <div class="modal" id="roomModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New Room</h3>
+                <span class="close" id="closeRoomModal">&times;</span>
+            </div>
+            <form id="roomForm">
+                <input type="text" placeholder="Room Number" required>
+                <select required>
+                    <option value="">Room Type</option>
+                    <option value="single">Single</option>
+                    <option value="double">Double</option>
+                    <option value="suite">Suite</option>
+                </select>
+                <input type="number" placeholder="Price per night" required>
+                <textarea placeholder="Description"></textarea>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelRoom">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Room</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal for Add Guest -->
+    <div class="modal" id="guestModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New Guest</h3>
+                <span class="close" id="closeGuestModal">&times;</span>
+            </div>
+            <form id="guestForm">
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email" required>
+                <input type="tel" placeholder="Phone" required>
+                <input type="text" placeholder="Address">
+                <input type="text" placeholder="ID Number">
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelGuest">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Guest</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
